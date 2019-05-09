@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'app', 'as' => 'app.', 'namespace' => 'App'], function () {
     Auth::routes(['register' => false]); //app.login
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth', 'tenant', 'bindings']], function () {
         Route::get('dashboard', function () {
             return view('app.dashboard');
         });

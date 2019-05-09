@@ -11,16 +11,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        \Tenant::setTenant(\App\Models\Company::find(1));
         factory(\App\Models\User::class, 1)
             ->create([
                 'email' => 'user1@user.com',
-                'company_id' => 1
             ]);
 
+        \Tenant::setTenant(\App\Models\Company::find(2));
         factory(\App\Models\User::class, 1)
             ->create([
                 'email' => 'user2@user.com',
-                'company_id' => 2
             ]);
     }
 }
